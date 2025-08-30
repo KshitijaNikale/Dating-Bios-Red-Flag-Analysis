@@ -168,3 +168,11 @@ Together these visualzation turns raw bios into a story : showing how age, city,
 • Inspired by everyday observations on how much people say about themselves in just a short bio.
 • Took cues from Gen Z Internet humor, and behavioral science ideas like shortcuts in human judgement.
 • Visualization styles inspired by a mix of data storytelling.
+
+
+#CONTACT INFO:
+
+•Connect with me: Linkdin- https://www.linkedin.com/in/kshitija-nikale-9935122b1/
+                  Email - kshitijanikale4@gmail.com
+
+
