@@ -119,6 +119,8 @@ This makes it super easy to see which age group is dominating the “toxicity ra
 
 3) Hotspot Map: City Toxicity Heatmap 🗺️🚨
 
+   [Click here to view the interactive map](https://rawcdn.githack.com/KshitijaNikale/Dating-Bios-Red-Flag-Analysis/refs/heads/main/toxic_city_map.html)
+
 This visualization zooms into 8 major cities and highlights them in light-to-dark shades, depending on how many red-flag bios each city contains. 
 The darker the shade, the more toxic energy the city is radiating 🌡️.
 
