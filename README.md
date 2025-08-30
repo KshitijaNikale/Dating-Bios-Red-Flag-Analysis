@@ -1,4 +1,4 @@
-#DATING RED FLAG ANALYSIS - Analyzing  dating bios with fun visualizations
+#DATING RED FLAG ANALYSIS - Analyzing  dating bios with NLP & fun visualizations
 
 #INTRODUCTION
 
