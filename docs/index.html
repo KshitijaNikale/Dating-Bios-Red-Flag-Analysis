@@ -1,1 +1,97 @@
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+
+# Load CSV
+df = pd.read_csv("flags_classification.csv")
+
+# Filter only red flags
+red_flags = df[df['flag_classification'] == "🚩Red Flag"]
+
+# Only the 8 cities
+cities_list = ["Philadelphia", "New York", "Las Vegas", "LA", "Houston", "Dallas", "Chicago", "San Francisco"]
+red_flags = red_flags[red_flags['city'].isin(cities_list)]
+
+# Count red flags by city
+city_counts = red_flags.groupby('city').size().reset_index(name='count')
+
+# City coordinates
+city_coords = {
+    "Philadelphia": [39.9526, -75.1652],
+    "New York": [40.7128, -74.0060],
+    "Las Vegas": [36.1699, -115.1398],
+    "LA": [34.0522, -118.2437],
+    "Houston": [29.7604, -95.3698],
+    "Dallas": [32.7767, -96.7970],
+    "Chicago": [41.8781, -87.6298],
+    "San Francisco": [37.7749, -122.4194]
+}
+
+city_counts['lat'] = city_counts['city'].map(lambda x: city_coords[x][0])
+city_counts['lon'] = city_counts['city'].map(lambda x: city_coords[x][1])
+
+# Create base map with city intensity
+fig = go.Figure()
+
+fig.add_trace(go.Scattergeo(
+    lon = city_counts['lon'],
+    lat = city_counts['lat'],
+    text = city_counts['city'] + " (" + city_counts['count'].astype(str) + ")",
+    mode = 'markers+text',
+    marker=dict(
+        size = city_counts['count']/max(city_counts['count'])*50 + 20, # scale size
+        color = city_counts['count'], # red intensity
+        colorscale = 'Reds',
+        showscale=True,
+        colorbar=dict(title="Red Flag Count")
+    ),
+    textposition="top center"
+))
+
+# Add platform small circles per city
+platform_colors = {
+    "Tinder": "blue",
+    "Bumble": "yellow",
+    "Hinge": "green",
+    "OkCupid": "purple"
+}
+
+# Count per city per platform
+platform_counts = red_flags.groupby(['city','platform']).size().reset_index(name='platform_count')
+
+for i, row in platform_counts.iterrows():
+    city_lat = city_coords[row['city']][0]
+    city_lon = city_coords[row['city']][1]
+    
+    # Scatter for platform inside city, slightly offset to see multiple platforms
+    fig.add_trace(go.Scattergeo(
+        lon = [city_lon + 0.2*(i%2)], # small horizontal offset
+        lat = [city_lat + 0.2*(i%2)],
+        text = f"{row['platform']} ({row['platform_count']})",
+        mode = 'markers+text',
+        marker=dict(
+            size = row['platform_count']/max(platform_counts['platform_count'])*20 + 5,
+            color = platform_colors.get(row['platform'], 'black'),
+            line=dict(width=1, color='black')
+        ),
+        textposition="bottom right",
+        showlegend=False
+    ))
+
+# Layout styling
+fig.update_layout(
+    geo=dict(
+        scope='usa',
+        projection=dict(type='albers usa'),
+        showland=True,
+        landcolor="lightgrey",
+        lakecolor="lightblue",
+    ),
+    title="🚩 Red Flags Radar: City Edition - Where Chaos Loves to Swipe ",
+    height=700,
+    width=1200,
+    title_font=dict(size=24, family="Arial Black"),
+)
+fig.write_html("toxic_city_map.html")                
+fig.show()
 
