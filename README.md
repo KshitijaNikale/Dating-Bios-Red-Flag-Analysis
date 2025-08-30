@@ -127,6 +127,7 @@ The darker the shade, the more toxic energy the city is radiating 🌡️.
 The map does double duty:
 On hovering over a city, you don’t just see the red flag count—you also see which platforms those bios came from.
 Each platform is color-coded, making it easy to spot whether toxicity is brewing more on, say, Tinder 🔥, Bumble 🐝, or Hinge 💘.
+Tinder is indicated by blue color, CMB by black color, okCupid by purple , Hinge by green.
 
 So in one glance, you can answer two questions:
 1. Which city is a red flag capital? 🏙️
