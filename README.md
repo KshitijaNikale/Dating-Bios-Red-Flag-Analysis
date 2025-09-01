@@ -23,8 +23,6 @@ Additional fields such as city, gender, age and platform are also sysnthetic (no
 -Age Range: 18 to 45 
 -Platform: Tinder, Hinge, Bumble, OkCupid, Coffee Meets Bagel (CMB)
 
-![Dataset](.code%20img/dataset.png)
-
 These attributes were randomly assigned using python's random.choices function. 
 The final dataset is stored in the file: real_authentic_dating_bios.csv
 
@@ -33,23 +31,10 @@ The final dataset is stored in the file: real_authentic_dating_bios.csv
 -Lowercasing, Punctuation Removal: Since the dataset and rows were messy and raw, I applied various text cleaning steps. Some bios were written in caps, some in small letters, and some mixed. So, for analysis, I converted all bios into lowercase.
 I also removed special characters and punctuation, which were just unnecessary clutter.
 
-![text cleaning](https://github.com/KshitijaNikale/Dating-Bios-Red-Flag-Analysis/blob/main/.code%20img/lowercase.png?raw=true)
-
-![text cleanings](.code%20img/specialpunctuation.png)
-
-
 -Numbers and Emoji Removal: Next, I removed numbers and emojis. Emojis don’t really add much analytical value, and sometimes they even give false signals (for example, the recent trend of using a rose emoji 🥀 as a broken heart symbol 
 instead of the actual broken heart 💔 emoji). To avoid such confusion, I dropped them.
 
-![emoji removal](.code%20img/emoji.png)
-
-
 -Tokenization and Handling Contractions: I then applied tokenization, which breaks bios into smaller segments (tokens). After that, I handled contractions, so words like don’t and do not are treated as the same.
-
-![tokenization](.code%20img/tokenization.png)
-
-![contraction](.code%20img/contraction.img)
-
 
 -Stopwords Removal and Lemmatization with POS tagging: The second-to-last step was filtering tokens, which removes stopwords like in, a, the. Finally, I applied lemmatization, which reduces words to their base form. 
 for example, dancing and dance are understood as the same. I also used lemmatization with POS tagging so that the algorithm could recognize whether a word is a noun or a verb, making the analysis more accurate.
@@ -61,25 +46,17 @@ The Final cleaned dataset saved as bios_cleaned_preview.csv with columns like bi
 -Word Frequency (Counter):
 I used this to find the most common words from the bios. For example, the word “I” was used 543 times, and “and” was used 388 times. This helps in knowing which words appear the most overall.
 
-![output of counter](.code%20img/word%20analysis.png)
-
 -Bigram Analysis
 I used this to check which words are most often used together. For example, the result showed “obsessed with”. By seeing this, we can guess it might lean toward a red flag, 
 but it’s not always the case—people can also use it in a casual or positive way, like “obsessed with coffee.” It’s a minor thing, but overall the word “obsessed” tends to lean towards red.
 From this, we can understand word pairings better and use them later in flag classification.
 
-![output of bigram](.code%20img/bigram.img)
-
 -Stopword Removal
 In this step, I removed stopwords and then checked which words appeared the most. In the earlier word frequency analysis, words like “I” and “and” showed up a lot, 
 but they don’t really add any value in flag classification. So after removing stopwords, I got more meaningful words like “loves,” “coffee,” and “chaos,” which help much more in further classification.
 
-![output after stopword removal](.code%20img/word%20count.png)
-
 TF-IDF
 From this, we get a score of how important a word is compared to others across the dataset. It basically highlights words that stand out more than just being frequently repeated.
-
-![frequency of word](.code%img/word%20frequency.png)
  
 #FLAG CLASSIFICATION
 
@@ -88,9 +65,6 @@ For flag classification, I created three keyword sections:
 green_flag = [ .... ]
 red_flag = [ .... ]
 mixed_flag = [ .... ]
-
-
-![keywords](.code%20img/keywords.png)
 
 These keywords were detected in two ways:
 
@@ -101,8 +75,6 @@ If a keyword from the red_flag section is found then output: 🚩 Red Flag
 If a keyword from the green_flag section is found then output: 🌿 Green Flag
 If a keyword from the mixed_flag section is found then output: 🙂 Mixed Flag
 If no keyword matches then output: 🤷‍♀️ No clear signal
-
-![classification](.code%20img/rule%20based%20logic.png)
 
 The results were then saved into a CSV file named flags_classification.csv, which includes the following columns:
 -bio
