@@ -33,7 +33,7 @@ The final dataset is stored in the file: real_authentic_dating_bios.csv
 -Lowercasing, Punctuation Removal: Since the dataset and rows were messy and raw, I applied various text cleaning steps. Some bios were written in caps, some in small letters, and some mixed. So, for analysis, I converted all bios into lowercase.
 I also removed special characters and punctuation, which were just unnecessary clutter.
 
-![text cleaning](.code%20img/lowercase.png)
+![text cleaning](https://github.com/KshitijaNikale/Dating-Bios-Red-Flag-Analysis/blob/main/.code%20img/lowercase.png?raw=true)
 
 ![text cleanings](.code%20img/specialpunctuation.png)
 
