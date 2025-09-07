@@ -174,6 +174,6 @@ Together these visualzation turns raw bios into a story : showing how age, city,
 #CONTACT INFO:
 
 •💌 wanna connect? : Linkdin- https://www.linkedin.com/in/kshitija-nikale-9935122b1/
-                     Email - kshitijanikale4@gmail.com
+                                      Email - kshitijanikale4@gmail.com
 
 
